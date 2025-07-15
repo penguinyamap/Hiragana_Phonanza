@@ -1,3 +1,4 @@
+#やねうら王形式の定跡を再評価するプログラム。評価値と指し手をDL系モデルで置換するときにどうぞ。
 import sys
 import time
 import subprocess
