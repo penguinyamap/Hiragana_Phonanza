@@ -12,16 +12,15 @@ file_name = "D:/downlod/split/val" #出力するファイルのパス
 psv = "D:/downlod/val-001.bin" #分割したいファイル
 
 while True:
-    psvs = np.fromfile(psv, dtype=PackedSfenValue,count = count,offset = psvs.nbytes*i)
-    #print(psvs)
-    #print(psvs.nbytes/(1024**3),"GB")
-    #print(len(psvs))
-    bins = np.zeros(len(psvs), dtype=PackedSfenValue)
+    if i ==0:
+        psvs = np.fromfile(psv, dtype=PackedSfenValue,count = count, offset = 0)
+    else:
+        psvs = np.fromfile(psv, dtype=PackedSfenValue,count = count,offset = psvs.nbytes*i)
+    splited_filemname = '{0}_{1:03d}.bin'.format(file_name,i)
+    print(splited_filemname)
+    psvs.tofile(splited_filemname)
+    print(psvs)
+    print(psvs.nbytes/(1024**3),"GB")
     i += 1
-    bin = '{0}_{1:03d}.bin'.format(file_name,i) #ファイル名に連番を付与
-    #print(i)
     if len(psvs) == 0:
         break
-    else:
-        #print(bin)
-        bins.tofile(bin)
